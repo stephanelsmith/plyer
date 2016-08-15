@@ -19,11 +19,14 @@ class IosGPS(GPS):
     def _start(self, **kwargs):
         self._location_manager.delegate = self
 
-        self._location_manager.requestWhenInUseAuthorization()
+        #self._location_manager.requestWhenInUseAuthorization() #location only when foreground
         # NSLocationWhenInUseUsageDescription key must exist in Info.plist
         # file. When the authorization prompt is displayed your app goes
         # into pause mode and if your app doesn't support background mode
         # it will crash.
+
+        #http://stackoverflow.com/questions/24062509/location-services-not-working-in-ios-8
+        self._location_manager.requestAlwaysAuthorization() #for background mode
         self._location_manager.startUpdatingLocation()
 
     def _stop(self):
@@ -33,12 +36,14 @@ class IosGPS(GPS):
     def locationManager_didUpdateLocations_(self, manager, locations):
         location = manager.location
 
+        #https://developer.apple.com/library/ios/documentation/CoreLocation/Reference/CLLocation_Class/index.html#//apple_ref/occ/instp/CLLocation/description
         self.on_location(
             lat=location.coordinate.a,
             lon=location.coordinate.b,
             speed=location.speed,
             bearing=location.course,
-            altitude=location.altitude)
+            altitude=location.altitude,
+            accuracy=location.horizontalAccuracy)
 
 
 def instance():
