@@ -28,7 +28,7 @@ class IosGPS(GPS):
         self._location_manager.startUpdatingLocation()
 
     #ssmith
-    def request_auth(self):
+    def _request_auth(self):
         #http://stackoverflow.com/questions/24062509/location-services-not-working-in-ios-8
         self._location_manager.requestAlwaysAuthorization() #for background mode
 
