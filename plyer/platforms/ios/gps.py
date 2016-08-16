@@ -25,9 +25,12 @@ class IosGPS(GPS):
         # into pause mode and if your app doesn't support background mode
         # it will crash.
 
+        self._location_manager.startUpdatingLocation()
+
+    #ssmith
+    def request_auth(self):
         #http://stackoverflow.com/questions/24062509/location-services-not-working-in-ios-8
         self._location_manager.requestAlwaysAuthorization() #for background mode
-        self._location_manager.startUpdatingLocation()
 
     def _stop(self):
         self._location_manager.stopUpdatingLocation()
@@ -43,7 +46,7 @@ class IosGPS(GPS):
             speed=location.speed,
             bearing=location.course,
             altitude=location.altitude,
-            accuracy=location.horizontalAccuracy)
+            accuracy=location.horizontalAccuracy) #ssmith
 
 
 def instance():
