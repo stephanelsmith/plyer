@@ -27,6 +27,7 @@ class IosGPS(GPS):
 
         #ssmith
         self._location_manager.requestAlwaysAuthorization() #for background mode
+        self._location_manager.allowsBackgroundLocationUpdates = True
         self._location_manager.startUpdatingLocation()
 
     def _stop(self):
