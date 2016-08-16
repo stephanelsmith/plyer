@@ -26,8 +26,14 @@ class IosGPS(GPS):
         # it will crash.
 
         #ssmith
+        #http://nevan.net/2014/09/core-location-manager-changes-in-ios-8/
         self._location_manager.requestAlwaysAuthorization() #for background mode
+        
+        #ssmith
+        #http://stackoverflow.com/questions/30808192/allowsbackgroundlocationupdates-in-cllocationmanager-in-ios9
         self._location_manager.allowsBackgroundLocationUpdates = True
+
+
         self._location_manager.startUpdatingLocation()
 
     def _stop(self):

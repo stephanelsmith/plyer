@@ -59,15 +59,8 @@ class GPS(object):
         '''
         self._stop()
 
-    #ssmith
-    def request_auth(self):
-        self._request_auth()
 
     # private
-
-    #ssmith
-    def _request_auth(self):
-        raise NotImplementedError()
 
     def _configure(self):
         raise NotImplementedError()
