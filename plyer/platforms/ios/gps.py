@@ -25,19 +25,9 @@ class IosGPS(GPS):
         # into pause mode and if your app doesn't support background mode
         # it will crash.
 
+        #ssmith
+        self._location_manager.requestAlwaysAuthorization() #for background mode
         self._location_manager.startUpdatingLocation()
-
-    #ssmith
-    def _request_auth(self):
-        #http://stackoverflow.com/questions/24062509/location-services-not-working-in-ios-8
-        kCLAuthorizationStatusNotDetermined = 0
-        kCLAuthorizationStatusRestricted = 1
-        kCLAuthorizationStatusDenied = 2
-        kCLAuthorizationStatusAuthorized = 3
-
-        authstatus = self._location_manager.authorizationStatus()
-        if authstatus != kCLAuthorizationStatusAuthorized:
-            self._location_manager.requestAlwaysAuthorization() #for background mode
 
     def _stop(self):
         self._location_manager.stopUpdatingLocation()
