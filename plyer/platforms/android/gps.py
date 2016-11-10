@@ -27,7 +27,9 @@ class _LocationListener(PythonJavaClass):
             speed=location.getSpeed(),
             bearing=location.getBearing(),
             altitude=location.getAltitude(),
-            accuracy=location.getAccuracy())
+            accuracy=location.getAccuracy(),
+            gpstime=location.getTime(),         #ssmith, added gps time
+            provider=location.getProvider())    #ssmith, added provider
 
     @java_method('(Ljava/lang/String;)V')
     def onProviderEnabled(self, status):
